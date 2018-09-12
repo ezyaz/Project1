@@ -23,4 +23,11 @@ db = scoped_session(sessionmaker(bind=engine))
 
 @app.route("/")
 def index():
-    return "Project 1: TODO"
+    books = db.execute("SELECT * FROM books").fetchall()
+    return render_template("index.html", books = books)
+
+@app.route("/login")
+def index(login):
+    return "Login Screen"
+
+@app.route("/")
